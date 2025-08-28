@@ -1,109 +1,94 @@
 package com.example.model;
 
-import java.time.LocalDate;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "security")
 public class Security {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long securityId;
-	
-	@Column(nullable = false)
-	private String name;
-	
-	@Column(nullable = false)
-	private String category;
-	
-	@Column(nullable = false)
-	private double purchasePrice;
-	
-	@Column(nullable = false)
-	private LocalDate purchaseDate;
-	
-	@Column(nullable = false)
-	private int quantity;
-	
-	@ManyToOne
-	@JoinColumn(name = "portfolioId",nullable = false)
-	private Portfolio portfolio;
 
-	public Security() {
-		
-	}
+    @Id
+    @GeneratedValue()
+    private long securityId;
 
-	public Security(String name, String category, double purchasePrice, LocalDate purchaseDate, int quantity,
-			Portfolio portfolio) {
-		
-		this.name = name;
-		this.category = category;
-		this.purchasePrice = purchasePrice;
-		this.purchaseDate = purchaseDate;
-		this.quantity = quantity;
-		this.portfolio = portfolio;
-	}
+    @ManyToOne
+    private Portfolio portfolio;
 
-	public long getSecurityId() {
-		return securityId;
-	}
+    @Column(nullable = false)
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    @Column(nullable = false)
+    private String category;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Column(nullable = false)
+    private float purchasePrice;
 
-	public String getCategory() {
-		return category;
-	}
+    @Column(nullable = false)
+    private String purchaseDate;
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+    @Column(nullable = false)
+    private float quantity;
 
-	public double getPurchasePrice() {
-		return purchasePrice;
-	}
+    protected Security() {
 
-	public void setPurchasePrice(double purchasePrice) {
-		this.purchasePrice = purchasePrice;
-	}
+    }
 
-	public LocalDate getPurchaseDate() {
-		return purchaseDate;
-	}
+    public Security(Portfolio portfolio, String name, String category, float purchasePrice, String purchaseDate, float quantity) {
+        this.portfolio = portfolio;
+        this.name = name;
+        this.category = category;
+        this.purchasePrice = purchasePrice;
+        this.purchaseDate = purchaseDate;
+        this.quantity = quantity;
+    }
 
-	public void setPurchaseDate(LocalDate purchaseDate) {
-		this.purchaseDate = purchaseDate;
-	}
+    public long getSecurityId() {
+        return securityId;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
+    }
 
-	public Portfolio getPortfolio() {
-		return portfolio;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setPortfolio(Portfolio portfolio) {
-		this.portfolio = portfolio;
-	}
-	
-	
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public float getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(float purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public String getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public float getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(float quantity) {
+        this.quantity = quantity;
+    }
 }
